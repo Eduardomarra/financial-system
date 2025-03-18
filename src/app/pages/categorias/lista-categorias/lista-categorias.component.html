@@ -30,7 +30,7 @@
         <small>{{categoria.descricao}}</small>
       </td>
       <td>
-        <button [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</button>
+        <button [routerLink]="[categoria.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</button>
         <button (click)="deletCategoria(categoria)" class="btn btn-outline-danger btn-sm">Excluir</button>
       </td>
     </tr>

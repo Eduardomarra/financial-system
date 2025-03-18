@@ -23,7 +23,7 @@ export class CategoriaService {
     )
   }
 
-  getCategoriaById(id: string): Observable<Categoria> {
+  getCategoriaById(id: number): Observable<Categoria> {
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url).pipe(
       catchError(this.handleError),
