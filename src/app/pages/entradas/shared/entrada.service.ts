@@ -55,13 +55,18 @@ export class EntradaService {
   }
 
   private jsonToEntradas(jsonData: any[]): Entrada[] {
-    const entrada: Entrada[] = [];
-    jsonData.forEach(element => entrada.push(element as Entrada));
-    return entrada;
+    const entradas: Entrada[] = [];
+
+    jsonData.forEach(element => {
+      const entrada = Object.assign(new Entrada(), element);
+      entradas.push(entrada);
+    });
+
+    return entradas;
   }
 
   private jsonToEntrada(jsonData: any): Entrada {
-    return jsonData as Entrada;
+    return Object.assign(new Entrada(), jsonData);
   }
 
   private handleError(error: any): Observable<any> {

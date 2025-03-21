@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EntradasRoutingModule } from './entradas-routing.module';
+import { ListaEntradaComponent } from './lista-entradas/lista-entradas.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListaEntradaComponent
+  ],
   imports: [
     CommonModule,
     EntradasRoutingModule
