@@ -153,8 +153,8 @@ export class FormularioEntradaComponent implements OnInit, AfterContentChecked {
 
   private actionsForSuccess( entrada: Entrada): void {
     toastr.success("Solicitação processada com sucesso!");
-    this.router.navigateByUrl("entradas", {skipLocationChange: true}).then(
-      () => this.router.navigate(["entradas", entrada.id, "edit"])
+    this.router.navigateByUrl("lancamentos", {skipLocationChange: true}).then(
+      () => this.router.navigate(["lancamentos", entrada.id, "edit"])
     )
   }
 
