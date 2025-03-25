@@ -1,76 +1,41 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable, throwError} from 'rxjs'
-import { map, catchError, flatMap } from 'rxjs/operators'
+import { Injectable, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
+import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
+import { CategoriaService } from '../../categorias/shared/categoria.service';
 
 import { Entrada } from './entrada.model'
-import { CategoriaService } from '../../categorias/shared/categoria.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EntradaService {
-
-  private baseUrl: string = "api/entradas";
-
+export class EntradaService extends BaseResourceService<Entrada> {
   constructor(
-    private http: HttpClient,
+    protected injector: Injector,
     private categoriaService: CategoriaService
-  ) { }
-
-  getAll(): Observable<Entrada[]> {
-    return this.http.get<Entrada[]>(this.baseUrl).pipe(
-      catchError(this.handleError),
-      map(this.jsonToEntradas)  
-    )
-  }
-
-  getEntradaById(id: number): Observable<Entrada> {
-    const url = `${this.baseUrl}/${id}`
-    return this.http.get(url).pipe(
-      catchError(this.handleError),
-      map(this.jsonToEntrada)
-    )
-  }
+  ) {
+    super(injector, "api/entradas")
+   } 
 
   create(entrada: Entrada): Observable<Entrada> {
     return this.categoriaService.getById(entrada.categoriaId).pipe(
       flatMap(categoria => {
         entrada.categoria = categoria;
-
-        return this.http.post<Entrada>(this.baseUrl, entrada).pipe(
-          catchError(this.handleError),
-          map(this.jsonToEntrada)
-        )
+        return super.create(entrada);
       })
     )
-
-    
   }
 
   update(entrada: Entrada): Observable<Entrada> {
-    const url = `${this.baseUrl}/${entrada.id}`;
-
     return this.categoriaService.getById(entrada.categoriaId).pipe(
       flatMap(categoria => {
         entrada.categoria = categoria;
-
-        return this.http.put<Entrada>(url, entrada).pipe(
-          catchError(this.handleError),
-          map(() => entrada)
-        )
+        return super.update(entrada);
       }))
   }
 
-  delete(id: number): Observable<any> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete(url).pipe(
-      catchError(this.handleError),
-      map(() => null)
-    )
-  }
-
-  private jsonToEntradas(jsonData: any[]): Entrada[] {
+  protected jsonToResources(jsonData: any[]): Entrada[] {
     const entradas: Entrada[] = [];
 
     jsonData.forEach(element => {
@@ -81,12 +46,8 @@ export class EntradaService {
     return entradas;
   }
 
-  private jsonToEntrada(jsonData: any): Entrada {
+  protected jsonToResource(jsonData: any): Entrada {
     return Object.assign(new Entrada(), jsonData);
   }
 
-  private handleError(error: any): Observable<any> {
-     console.error('Error:', error);
-     return throwError(error);
-  }
 }
