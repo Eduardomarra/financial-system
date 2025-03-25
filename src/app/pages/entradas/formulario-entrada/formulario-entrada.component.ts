@@ -108,7 +108,7 @@ export class FormularioEntradaComponent implements OnInit, AfterContentChecked {
   private loadEntradas(): void {
     if(this.currentAction == "edit") {
       this.route.paramMap.pipe(
-        switchMap(params => this.entradaService.getEntradaById(+params.get("id")))
+        switchMap(params => this.entradaService.getById(+params.get("id")))
       ).subscribe(
         entrada => {
           this.entrada = entrada;
