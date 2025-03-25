@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/shared/shared.module';
 import { EntradasRoutingModule } from './entradas-routing.module';
-import { ListaEntradaComponent } from './lista-entradas/lista-entradas.component';
-import { FormularioEntradaComponent } from './formulario-entrada/formulario-entrada.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { CalendarModule} from 'primeng/calendar'
 import { IMaskModule} from 'angular-imask'
+
+import { ListaEntradaComponent } from './lista-entradas/lista-entradas.component';
+import { FormularioEntradaComponent } from './formulario-entrada/formulario-entrada.component';
+
 
 @NgModule({
   declarations: [
@@ -15,9 +15,8 @@ import { IMaskModule} from 'angular-imask'
     FormularioEntradaComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     EntradasRoutingModule,
-    ReactiveFormsModule,
     CalendarModule,
     IMaskModule
   ]
