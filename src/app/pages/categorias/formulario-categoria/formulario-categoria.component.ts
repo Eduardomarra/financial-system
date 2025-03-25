@@ -65,7 +65,7 @@ export class FormularioCategoriaComponent implements OnInit, AfterContentChecked
   private loadCategorias(): void {
     if(this.currentAction == "edit") {
       this.route.paramMap.pipe(
-        switchMap(params => this.categoriaService.getCategoriaById(+params.get("id")))
+        switchMap(params => this.categoriaService.getById(+params.get("id")))
       ).subscribe(
         categoria => {
           this.categoria = categoria;
