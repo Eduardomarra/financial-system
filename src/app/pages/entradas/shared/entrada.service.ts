@@ -34,7 +34,7 @@ export class EntradaService {
   }
 
   create(entrada: Entrada): Observable<Entrada> {
-    return this.categoriaService.getCategoriaById(entrada.categoriaId).pipe(
+    return this.categoriaService.getById(entrada.categoriaId).pipe(
       flatMap(categoria => {
         entrada.categoria = categoria;
 
@@ -51,7 +51,7 @@ export class EntradaService {
   update(entrada: Entrada): Observable<Entrada> {
     const url = `${this.baseUrl}/${entrada.id}`;
 
-    return this.categoriaService.getCategoriaById(entrada.categoriaId).pipe(
+    return this.categoriaService.getById(entrada.categoriaId).pipe(
       flatMap(categoria => {
         entrada.categoria = categoria;
 
