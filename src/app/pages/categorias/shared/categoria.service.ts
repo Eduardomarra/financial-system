@@ -10,7 +10,7 @@ export class CategoriaService extends BaseResourceService<Categoria>{
   constructor(
     protected injector: Injector,
   ) {
-    super(injector, "api/categorias")
+    super(injector, "api/categorias", Categoria.fromJson)
    }
 
 }

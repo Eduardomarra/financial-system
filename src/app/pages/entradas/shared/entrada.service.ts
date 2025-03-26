@@ -15,7 +15,7 @@ export class EntradaService extends BaseResourceService<Entrada> {
     protected injector: Injector,
     private categoriaService: CategoriaService
   ) {
-    super(injector, "api/entradas")
+    super(injector, "api/entradas", Entrada.fromJson)
    } 
 
   create(entrada: Entrada): Observable<Entrada> {
@@ -33,21 +33,6 @@ export class EntradaService extends BaseResourceService<Entrada> {
         entrada.categoria = categoria;
         return super.update(entrada);
       }))
-  }
-
-  protected jsonToResources(jsonData: any[]): Entrada[] {
-    const entradas: Entrada[] = [];
-
-    jsonData.forEach(element => {
-      const entrada = Object.assign(new Entrada(), element);
-      entradas.push(entrada);
-    });
-
-    return entradas;
-  }
-
-  protected jsonToResource(jsonData: any): Entrada {
-    return Object.assign(new Entrada(), jsonData);
   }
 
 }
