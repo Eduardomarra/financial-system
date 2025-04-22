@@ -12,4 +12,6 @@ export class RelatoriosComponent implements OnInit {
   ngOnInit() {
   }
 
+  gerarRelatorios(): void {}
+
 }
