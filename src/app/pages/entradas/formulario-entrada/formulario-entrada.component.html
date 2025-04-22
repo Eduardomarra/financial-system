@@ -25,6 +25,10 @@
           <select name="type" id="type" formControlName="tipo" class="form-control">
             <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
           </select>
+
+          <app-form-field-error
+            [form-control]="resourceForm.get('tipo')"
+          ></app-form-field-error>
         </div>
 
 
@@ -33,10 +37,10 @@
           <label for="name">Lançamento</label>
           <input type="text" name="name" id="name" class="form-control"  formControlName="nome"/>
 
-          <div class="text-danger" *ngIf="resourceForm.get('nome')?.invalid && resourceForm.get('nome').touched">
-            <div *ngIf="resourceForm.get('nome').errors?.required">Nome obrigatório</div>
-            <div *ngIf="resourceForm.get('nome').errors?.minlength">deve ter no minimo 2 caracteres</div>
-          </div>
+          <app-form-field-error
+            [form-control]="resourceForm.get('nome')"
+            [error-message]="'Campo obrigatório'"
+          ></app-form-field-error>
         </div>
 
         <!-- valor -->
@@ -49,9 +53,10 @@
             </div>
           </div>
 
-          <div class="text-danger" *ngIf="resourceForm.get('valor')?.invalid && resourceForm.get('valor').touched">
-            <div *ngIf="resourceForm.get('valor').errors?.required">Valor obrigatório</div>
-          </div>
+          <app-form-field-error
+            [form-control]="resourceForm.get('valor')"
+            [error-message]="'Valor obrigatório'"
+          ></app-form-field-error>
         </div>
 
         <!-- data -->
@@ -68,9 +73,10 @@
           >
           </p-calendar>
 
-          <div class="text-danger" *ngIf="resourceForm.get('data')?.invalid && resourceForm?.get('data').touched">
-            <div *ngIf="resourceForm.get('data').errors?.required">Data obrigatória</div>
-          </div>
+          <app-form-field-error
+            [form-control]="resourceForm.get('data')"
+            [error-message]="'Data obrigatória'"
+          ></app-form-field-error>
         </div>
 
       </div>
@@ -84,9 +90,9 @@
             <label (click)="resourceForm.get('pago').setValue(false)" [class.active]="resourceForm.get('pago').value == false" class="btn btn-outline-info">Pendente</label>
           </div>
 
-          <div class="text-danger" *ngIf="resourceForm.get('pago')?.invalid && resourceForm.get('pago').touched">
-            <div *ngIf="resourceForm.get('pago').errors?.required">Valor obrigatório</div>
-          </div>
+          <app-form-field-error
+            [form-control]="resourceForm.get('pago')"
+          ></app-form-field-error>
         </div>
 
         <!-- categoriaId -->
@@ -96,9 +102,10 @@
             <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nome }}</option>
           </select>
 
-          <div class="text-danger" *ngIf="resourceForm.get('categoriaId')?.invalid && resourceForm.get('categoriaId').touched">
-            <div *ngIf="resourceForm.get('categoriaId').errors?.required">Categoria obrigatória</div>
-          </div>
+          <app-form-field-error
+            [form-control]="resourceForm.get('categoriaId')"
+            [error-message]="'Categoria obrigatória'"
+          ></app-form-field-error>
         </div>
 
         <!-- descricao -->
