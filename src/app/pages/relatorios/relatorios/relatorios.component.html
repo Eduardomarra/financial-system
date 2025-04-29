@@ -16,7 +16,7 @@
     <div class="form-row">
       <div class="form-group col-md-7">
         <label for="month">Mês</label>
-        <select name="month" id="month" class="form-control">
+        <select #month name="month" id="month" class="form-control">
           <option value="">Selecione um mês</option>
           <option value="1">Janeiro</option>
           <option value="2">Fevereiro</option>
@@ -60,7 +60,7 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        10000
+        {{revenueTotal}}
       </h3>
     </div>
   </div>
@@ -70,17 +70,17 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        - 5000
+        {{expenseTotal}}
       </h3>
     </div>
   </div>
   <div class="card text-center text-white bg-info">
     <div class="card-header">
-      TOTAL
+      BALANÇO
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        5000
+        {{balance}}
       </h3>
     </div>
   </div>
@@ -90,9 +90,9 @@
 
 <div class="row mt-5 mb-4">
   <div class="col-md-6">
-    GRAFICO DE RECEITAS
+    <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
   </div>
   <div class="col-md-6">
-    GRAFICO DE DESPESAS
+    <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     AppRoutingModule,
     CoreModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
